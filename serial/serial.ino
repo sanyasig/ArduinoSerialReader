@@ -1,36 +1,22 @@
-/**
-all the json values are expecting to have the JSON where all the lables are 
-STEING values and all the values are  Number values 
-**/
+void setup(){
+    Serial.begin(115200);
+    Serial0.begin(115200);
 
-boolean toggleComplete = false;
-boolean pwmComplete = false;
-String inputString;
-char endChar = 'e';
-char beginChar = 'b';
-char newChar;
-void setup()
-{
-	Serial.begin(9600);
+    pinMode(13, OUTPUT);
 }
 
-void  loop()
-{
-	while(Serial.available()){
-		newChar = (char)Serial.read();
-		if (newChar == beginChar){
-			inputString = "";
-		}
-		else if (newChar == endChar){
-			toggleComplete = true;
-			}else{
-				inputString += newChar; 
-			}
-		}
+void loop(){
+    Serial.print("Hello");
+    Serial.print(" ");
+    Serial.println("A9!");
 
-	if(toggleComplete == true){
-		Serial.println(inputString);
-		toggleComplete = false;
-	}
+    digitalWrite(13, HIGH);
+    delay(1000);
 
+    Serial0.print("Hello");
+    Serial0.print(" ");
+    Serial0.println("world!");
+
+    digitalWrite(13, LOW);
+    delay(1000);
 }
